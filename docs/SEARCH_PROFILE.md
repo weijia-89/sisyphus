@@ -147,9 +147,7 @@ Use gitignored local paths only for `search_profile.local.yaml` and optional `re
 ## Verify
 
 ```bash
-python3 -c "import sys; sys.path.insert(0,'.'); from lib.search_profile import verify_search_profiles; verify_search_profiles()"
+./scripts/verify_search_profiles.sh
 test -f config/search_profile.schema.json
-test -f config/profile_catalog.yaml
-test -f docs/SEARCH_PROFILES.md
 test -f docs/SEARCH_PROFILE.md
 ```

@@ -126,7 +126,6 @@ def results_dir(profile: dict[str, Any]) -> str:
 
 def verify_search_profiles(repo_root: str | os.PathLike[str] | None = None) -> None:
     """Load catalog YAMLs, example symlink, and validate profile_catalog.yaml paths."""
-    # sdk-review F2: gate symlink + catalog paths; print ok lines (load_profile returns truthy dict)
     root = Path(repo_root or Path(__file__).resolve().parent.parent)
 
     profiles_dir = root / "config" / "search_profiles"
@@ -157,4 +156,13 @@ def verify_search_profiles(repo_root: str | os.PathLike[str] | None = None) -> N
         path = root / rel
         if not path.is_file():
             raise FileNotFoundError(f"Catalog path missing: {path}")
+        data = load_profile(path)
+        # sdk-review F2: catalog manifest must match YAML fit_calibration_profile stem
+        catalog_fit = entry.get("fit_calibration_profile")
+        yaml_fit = data.get("fit_calibration_profile")
+        if catalog_fit != yaml_fit:
+            raise ValueError(
+                f"fit_calibration_profile mismatch for {entry['id']!r}: "
+                f"catalog={catalog_fit!r} yaml={yaml_fit!r}"
+            )
         print("ok", "catalog", entry["id"])
