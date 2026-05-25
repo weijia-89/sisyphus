@@ -157,7 +157,6 @@ def verify_search_profiles(repo_root: str | os.PathLike[str] | None = None) -> N
         if not path.is_file():
             raise FileNotFoundError(f"Catalog path missing: {path}")
         data = load_profile(path)
-        # sdk-review F2: catalog manifest must match YAML fit_calibration_profile stem
         catalog_fit = entry.get("fit_calibration_profile")
         yaml_fit = data.get("fit_calibration_profile")
         if catalog_fit != yaml_fit:

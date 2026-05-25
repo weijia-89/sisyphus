@@ -148,6 +148,4 @@ Use gitignored local paths only for `search_profile.local.yaml` and optional `re
 
 ```bash
 ./scripts/verify_search_profiles.sh
-test -f config/search_profile.schema.json
-test -f docs/SEARCH_PROFILE.md
 ```
