@@ -71,8 +71,10 @@ Details: `fit/README.md`, `fit/docs/getting-started.md`.
 
 ## Layout
 
+<!-- sdk-review F1: corpofit is a repo-root executable file, not a directory (no trailing slash) -->
+
 ```
-corpofit/                      # shim → fit/scripts/corpofit.py
+corpofit                       # repo-root executable shim → fit/scripts/corpofit.py
 scripts/run_search.py          # scraper + filter pipeline
 scripts/triage_jobspy_csv.py   # CSV triage + ILS post-gates
 scripts/prescreen.py           # prescreen columns

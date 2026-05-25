@@ -30,6 +30,4 @@ This file tracks notable changes. Format follows [Keep a Changelog](https://keep
 - Initial private monorepo layout: JobSpy scrape/triage stack, `requirements.txt`, search profile template, prescreen and triage scripts.
 - `docs/JOBSPY_INVENTORY.md`, `docs/SEARCH_PROFILE.md`, `DIFFERENCES-vs-python-jobspy.md`.
 
-[Unreleased]: https://github.com/weijia-89/sisyphus/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/weijia-89/sisyphus/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/weijia-89/sisyphus/releases/tag/v0.1.0
+<!-- sdk-review F2: Keep a Changelog compare/release footer links omitted until v0.1.0 and v0.2.0 tags exist on GitHub -->
