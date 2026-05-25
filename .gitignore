@@ -1,11 +1,37 @@
 .venv/
+venv/
+env/
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# JobSpy local overrides
 config/search_profile.local.yaml
 config/referral_status.local.txt
+
+# JobSpy results (keep directory, ignore CSV output)
 data/*
 !data/jobspy_results/
 data/jobspy_results/*
 !data/jobspy_results/.gitkeep
+
+# Fit calculator local state
+fit/config/calibration.json
+fit/localonly/
+fit/.internal/
+
+# Repo-local working state
 localonly/
+.internal/

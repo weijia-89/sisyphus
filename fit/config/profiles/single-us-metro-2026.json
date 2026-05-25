@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "name": "single-us-metro-2026",
+  "description": "Single-person US-metro household (e.g., Austin, Denver, Atlanta, Boston, mid-tier coastal metros), no dependents, 2026. Matches the shipped calibration.example.json starter. ADJUST to your actual housing cost + savings rate + healthcare needs.",
+  "tier_banding": {
+    "1": 35.0,
+    "2": 33.0,
+    "3": 30.0,
+    "4": 27.0,
+    "5": 24.0,
+    "6": 16.0,
+    "7": 8.0,
+    "8": 0.0
+  },
+  "comp_floor_usd": {
+    "1": 95000,
+    "2": 110000,
+    "3": 125000,
+    "4": 135000,
+    "5": 145000,
+    "6": 160000,
+    "7": 170000,
+    "8": 185000
+  },
+  "dim_max": {
+    "c1": 12.7,
+    "c2": 14.1,
+    "c3": 14.1,
+    "c4": 12.7,
+    "c6": 8.5,
+    "c7": 2.8
+  }
+}

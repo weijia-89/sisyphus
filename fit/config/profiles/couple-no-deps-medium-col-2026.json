@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "name": "couple-no-deps-medium-col-2026",
+  "description": "Couple with two earners, no dependents, US medium-cost-of-living area, 2026. Comp floors reflect a household where the JFS user's income is one of two earners; pure floors are ~85% of single-us-metro since fixed costs (housing, utilities, insurance) are shared. ADJUST if you are the dominant earner or sole earner during transitions.",
+  "tier_banding": {
+    "1": 35.0,
+    "2": 33.0,
+    "3": 30.0,
+    "4": 27.0,
+    "5": 24.0,
+    "6": 16.0,
+    "7": 8.0,
+    "8": 0.0
+  },
+  "comp_floor_usd": {
+    "1": 80000,
+    "2": 95000,
+    "3": 105000,
+    "4": 115000,
+    "5": 125000,
+    "6": 135000,
+    "7": 145000,
+    "8": 160000
+  },
+  "dim_max": {
+    "c1": 12.7,
+    "c2": 14.1,
+    "c3": 14.1,
+    "c4": 12.7,
+    "c6": 8.5,
+    "c7": 2.8
+  }
+}

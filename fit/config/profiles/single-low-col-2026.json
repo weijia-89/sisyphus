@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "name": "single-low-col-2026",
+  "description": "Single-person low-to-medium cost-of-living US household (e.g., midwest, smaller southern metros, rural areas), no dependents, 2026. ~30% lower comp floors than the single-us-metro starter. ADJUST to your actual housing cost + savings rate + healthcare needs.",
+  "tier_banding": {
+    "1": 35.0,
+    "2": 33.0,
+    "3": 30.0,
+    "4": 27.0,
+    "5": 24.0,
+    "6": 16.0,
+    "7": 8.0,
+    "8": 0.0
+  },
+  "comp_floor_usd": {
+    "1": 65000,
+    "2": 75000,
+    "3": 85000,
+    "4": 95000,
+    "5": 105000,
+    "6": 115000,
+    "7": 125000,
+    "8": 135000
+  },
+  "dim_max": {
+    "c1": 12.7,
+    "c2": 14.1,
+    "c3": 14.1,
+    "c4": 12.7,
+    "c6": 8.5,
+    "c7": 2.8
+  }
+}
