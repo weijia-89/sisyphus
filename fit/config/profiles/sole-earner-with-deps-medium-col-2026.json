@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "name": "sole-earner-with-deps-medium-col-2026",
+  "description": "Sole-earner household with dependent(s), US medium-cost-of-living area, 2026. Comp floors are ~30% higher than single-us-metro to reflect household healthcare, childcare, larger housing, college-savings, and emergency-fund needs. ADJUST per number of dependents (~$15k floor increment per child for medium-col), childcare cost, and healthcare needs.",
+  "tier_banding": {
+    "1": 35.0,
+    "2": 33.0,
+    "3": 30.0,
+    "4": 27.0,
+    "5": 24.0,
+    "6": 16.0,
+    "7": 8.0,
+    "8": 0.0
+  },
+  "comp_floor_usd": {
+    "1": 125000,
+    "2": 145000,
+    "3": 165000,
+    "4": 180000,
+    "5": 190000,
+    "6": 210000,
+    "7": 220000,
+    "8": 240000
+  },
+  "dim_max": {
+    "c1": 12.7,
+    "c2": 14.1,
+    "c3": 14.1,
+    "c4": 12.7,
+    "c6": 8.5,
+    "c7": 2.8
+  }
+}

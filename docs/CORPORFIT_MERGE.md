@@ -11,9 +11,9 @@
 
 Link stacks via **data only**:
 
-- `config/profile_catalog.yaml` — pairs a search profile id with a fit calibration JSON id + human description
+- `config/profile_catalog.yaml` (SDK lane 2 — not in lane-1 merge) — pairs a search profile id with a fit calibration JSON id + human description
 - Operator passes `JOB_SEARCH_PROFILE=config/search_profiles/<id>.yaml` for scrape/triage
-- Operator passes `fit/config/profiles/<id>.json` (or `--config`) for `./fit/corpofit` scoring
+- Operator passes `fit/config/profiles/<id>.json` (or `--config`) for `./corpofit` scoring from repo root
 
 No `import` between stacks. Duplicated comp floor numbers in YAML vs JSON are intentional (generated from same source in SDK lane 2).
 
@@ -29,7 +29,7 @@ sisyphus/
   lib/
   config/
     search_profiles/           # multiple YAML (lane 2)
-    profile_catalog.yaml       # manifest linking search ↔ fit profiles
+    profile_catalog.yaml       # manifest linking search ↔ fit profiles (lane 2)
     search_profile.schema.json
     skip_companies.txt
   fit/

@@ -1,0 +1,16 @@
+#!/bin/sh
+# corpofit: thin wrapper around fit/scripts/corpofit.py.
+#
+# Lets users run `./corpofit --interactive` (or any other CLI option)
+# from the repo root without the longer `python3 fit/scripts/corpofit.py`
+# invocation. The canonical entry point remains fit/scripts/corpofit.py;
+# this is a convenience shim only.
+#
+# Cross-platform note: this is a POSIX shell script and works on
+# macOS / Linux / WSL. Windows users without WSL can continue to use
+# `python3 fit/scripts/corpofit.py` directly.
+
+set -e
+
+HERE="$(cd "$(dirname "$0")" && pwd)"
+exec python3 "$HERE/fit/scripts/corpofit.py" "$@"
