@@ -62,7 +62,7 @@ Port **five** corpofit calibration personas into **search_profile** YAML:
 
 Each YAML includes optional field `fit_calibration_profile: <json basename>` for catalog parity.
 
-Wei’s active Atlanta QA profile becomes `search_profiles/wei-atlanta-qa-2026.yaml` (rename from example) and catalog entry `active_default: true` in `profile_catalog.yaml`.
+Wei’s active Atlanta QA profile becomes `search_profiles/wei-atlanta-qa-2026.yaml` (rename from example) with `active_default: wei-atlanta-qa-2026` in `profile_catalog.yaml`.
 
 ## GitHub
 

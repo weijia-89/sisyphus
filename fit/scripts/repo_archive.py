@@ -105,7 +105,7 @@ def decode_archive(archive_path: Path, source_dir: Path) -> dict:
                 continue
             if "/" in m.name or m.name.startswith(".."):
                 raise ValueError(f"refusing to extract unsafe path: {m.name}")
-            # sdk-review F3: filter= requires 3.12+; path checks above cover older runtimes
+            # tarfile filter= requires 3.12+; name checks above cover older runtimes
             extract_kwargs: dict = {}
             if hasattr(tarfile, "data_filter"):
                 extract_kwargs["filter"] = "data"

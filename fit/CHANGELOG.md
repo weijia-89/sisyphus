@@ -15,6 +15,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 First-visitor usability pass. No functional changes to scoring, calibration, or gate logic.
 
+#### Changed
+
+- When log append fails (`OSError`), the CLI exits 2, prints the error on stderr, and does not emit the computed score on stdout (fail-fast for pipelines; interactive users must fix `fit/localonly/` permissions or use `--no-log`).
+
 #### Added
 
 - Repo-root `./corpofit` shell shim → `fit/scripts/corpofit.py`. POSIX; Windows without WSL

@@ -126,6 +126,30 @@ class CorpofitCLITests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("--company", result.stderr)
 
+    def test_log_append_failure_exits_2(self):
+        log_dir = _REPO / "localonly"
+        log_path = log_dir / "score_log.jsonl"
+        log_dir.mkdir(parents=True, exist_ok=True)
+        had_file = log_path.is_file()
+        backup = log_path.read_bytes() if had_file else None
+        if log_path.exists():
+            log_path.unlink()
+        log_path.mkdir()
+        try:
+            result = _run(_CORPOFIT, [
+                "--tier", "5",
+                "--c1", "10", "--c2", "12", "--c3", "11",
+                "--c4", "10", "--c6", "7", "--c7", "2",
+                "--company", "TestCo",
+            ])
+            self.assertEqual(result.returncode, 2, result.stderr)
+            self.assertIn("log append failed", result.stderr)
+            self.assertNotIn("score_final", result.stdout)
+        finally:
+            log_path.rmdir()
+            if had_file and backup is not None:
+                log_path.write_bytes(backup)
+
 
 class ProfilePickerTests(unittest.TestCase):
     """Cover the --interactive profile picker added 2026-05-20.
