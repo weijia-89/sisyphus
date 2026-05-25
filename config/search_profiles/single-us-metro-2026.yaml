@@ -1,0 +1,44 @@
+# Single-person US-metro household (corpofit default calibration). Atlanta example geography.
+fit_calibration_profile: single-us-metro-2026
+owner: single-us-metro-2026
+
+remote_preference: hybrid_home_metro
+
+home_metro:
+  name: Atlanta core
+  zip_anchor: "30317"
+  place_names:
+    - Atlanta
+    - Decatur
+    - Brookhaven
+    - Sandy Springs
+    - Dunwoody
+    - Roswell
+    - Marietta
+    - Alpharetta
+    - Johns Creek
+    - Buckhead
+    - Midtown Atlanta
+    - Emory
+    - Georgia Tech
+
+comp:
+  # tier_floors from corpofit comp_floor_usd; min_ceiling_usd = tier-5 floor − $15k (scraper comp_ok).
+  min_ceiling_usd: 130000
+  tier_floors:
+    "5": 145000
+    "7": 170000
+
+ils:
+  cold_floor: 45
+  referral_warm_delta: -10
+  referral_strong_delta: -20
+
+tracks:
+  enable: [A, B, C]
+
+referrals:
+  status_file: config/referral_status.template.txt
+
+output:
+  results_dir: ./data/jobspy_results

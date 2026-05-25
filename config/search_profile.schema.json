@@ -16,6 +16,11 @@
     "output"
   ],
   "properties": {
+    "fit_calibration_profile": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "description": "Optional stem linking to fit/config/profiles/<stem>.json (stdlib calculator). Data-only pairing; JobSpy code must not import fit stack."
+    },
     "owner": {
       "type": "string",
       "minLength": 1,

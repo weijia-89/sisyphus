@@ -1,0 +1,43 @@
+# Manifest of shipped search profiles. Data-only link to fit/config/profiles/<fit_calibration_profile>.json
+# after the corpofit merge PR lands — JobSpy code must not import fit/.
+active_default: wei-atlanta-qa-2026
+
+profiles:
+  - id: wei-atlanta-qa-2026
+    path: config/search_profiles/wei-atlanta-qa-2026.yaml
+    fit_calibration_profile: single-us-metro-2026
+    description: >
+      Wei Jia active Atlanta QA — full ATL hybrid allowlist, tracks A/B/C.
+      Tier-7 floor is operator-tuned below corpofit single-us-metro default.
+
+  - id: single-low-col-2026
+    path: config/search_profiles/single-low-col-2026.yaml
+    fit_calibration_profile: single-low-col-2026
+    description: >
+      Single person, low-to-medium COL (midwest, smaller southern metros, rural).
+      Lowest comp floors in the family.
+
+  - id: single-us-metro-2026
+    path: config/search_profiles/single-us-metro-2026.yaml
+    fit_calibration_profile: single-us-metro-2026
+    description: >
+      Single person, typical US metro (Austin, Denver, Atlanta, Boston, mid-tier coastal).
+      Default persona for new operators; search_profile.example.yaml points here.
+
+  - id: single-high-col-2026
+    path: config/search_profiles/single-high-col-2026.yaml
+    fit_calibration_profile: single-high-col-2026
+    description: >
+      Single person, very-high COL (SF Bay, NYC, Seattle, LA, Boston-Cambridge, DC).
+
+  - id: couple-no-deps-medium-col-2026
+    path: config/search_profiles/couple-no-deps-medium-col-2026.yaml
+    fit_calibration_profile: couple-no-deps-medium-col-2026
+    description: >
+      Couple with two earners, no dependents, medium COL. Floors ~85% of single-us-metro.
+
+  - id: sole-earner-with-deps-medium-col-2026
+    path: config/search_profiles/sole-earner-with-deps-medium-col-2026.yaml
+    fit_calibration_profile: sole-earner-with-deps-medium-col-2026
+    description: >
+      Sole earner with dependent(s), medium COL. Floors ~30% above single-us-metro.

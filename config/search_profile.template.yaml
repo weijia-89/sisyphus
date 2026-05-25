@@ -1,4 +1,6 @@
 # Copy to config/search_profile.local.yaml and edit (gitignored).
+# Or start from a catalog profile: cp config/search_profiles/single-us-metro-2026.yaml config/search_profile.local.yaml
+# See docs/SEARCH_PROFILES.md and config/profile_catalog.yaml for the full family.
 # Validate: python3 -c "from lib.search_profile import load_profile; load_profile('config/search_profile.local.yaml')"
 
 owner: your-name
