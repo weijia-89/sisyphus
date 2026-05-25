@@ -24,7 +24,10 @@ python3 -c "from lib.search_profile import load_profile; load_profile('$JOB_SEAR
 |------|---------|
 | `config/search_profile.schema.json` | JSON Schema draft 2020-12 validation |
 | `config/search_profile.template.yaml` | Anonymized starter with comments |
-| `config/search_profile.example.yaml` | Wei reference (Atlanta core, tracks A/B/C) |
+| `config/search_profile.example.yaml` | Symlink to `search_profiles/single-us-metro-2026.yaml` (generic metro starter) |
+| `config/search_profiles/` | Catalog personas — see `profile_catalog.yaml` and `docs/SEARCH_PROFILES.md` |
+| `config/profile_catalog.yaml` | Manifest + `active_default` (`wei-atlanta-qa-2026`) |
+| `config/search_profiles/wei-atlanta-qa-2026.yaml` | Wei operator QA (full ATL allowlist, tracks A/B/C) |
 | `config/search_profile.local.yaml` | Your copy (create locally) |
 | `lib/search_profile.py` | `load_profile()` + helpers |
 
@@ -102,7 +105,7 @@ Import works with **only** sisyphus on `PYTHONPATH` (no toren).
 ```bash
 export JOB_SEARCH_PROFILE=config/search_profile.local.yaml
 python3 scripts/triage_with_profile.py --latest
-python3 scripts/triage_with_profile.py --dry-run --profile config/search_profile.example.yaml
+python3 scripts/triage_with_profile.py --dry-run --profile config/search_profiles/wei-atlanta-qa-2026.yaml
 ```
 
 Delegates to `~/Projects/toren/scripts/triage_jobspy_csv.py` with `--ils-floor` from profile until lane 3 lands.
@@ -144,7 +147,9 @@ Use gitignored local paths only for `search_profile.local.yaml` and optional `re
 ## Verify
 
 ```bash
-python3 -c "import sys; sys.path.insert(0,'.'); from lib.search_profile import load_profile; load_profile('config/search_profile.example.yaml')"
+python3 -c "import sys; sys.path.insert(0,'.'); from lib.search_profile import verify_search_profiles; verify_search_profiles()"
 test -f config/search_profile.schema.json
+test -f config/profile_catalog.yaml
+test -f docs/SEARCH_PROFILES.md
 test -f docs/SEARCH_PROFILE.md
 ```

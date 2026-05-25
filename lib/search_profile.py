@@ -122,3 +122,39 @@ def enabled_tracks(profile: dict[str, Any]) -> list[str]:
 
 def results_dir(profile: dict[str, Any]) -> str:
     return profile["output"]["results_dir"]
+
+
+def verify_search_profiles(repo_root: str | os.PathLike[str] | None = None) -> None:
+    """Load catalog YAMLs, example symlink, and validate profile_catalog.yaml paths."""
+    # sdk-review F2: gate symlink + catalog paths; print ok lines (load_profile returns truthy dict)
+    root = Path(repo_root or Path(__file__).resolve().parent.parent)
+
+    profiles_dir = root / "config" / "search_profiles"
+    for p in sorted(profiles_dir.glob("*.yaml")):
+        load_profile(p)
+        print("ok", p.name)
+
+    example = root / "config" / "search_profile.example.yaml"
+    load_profile(example)
+    print("ok", example.name)
+
+    catalog_path = root / "config" / "profile_catalog.yaml"
+    if not catalog_path.is_file():
+        raise FileNotFoundError(f"Catalog not found: {catalog_path}")
+    with open(catalog_path, encoding="utf-8") as f:
+        catalog = yaml.safe_load(f)
+    if not isinstance(catalog, dict):
+        raise ValueError(f"Catalog root must be a mapping: {catalog_path}")
+
+    active = catalog.get("active_default")
+    entries = catalog.get("profiles") or []
+    ids = {entry["id"] for entry in entries}
+    if active not in ids:
+        raise ValueError(f"active_default {active!r} not in catalog profile ids")
+
+    for entry in entries:
+        rel = entry["path"]
+        path = root / rel
+        if not path.is_file():
+            raise FileNotFoundError(f"Catalog path missing: {path}")
+        print("ok", "catalog", entry["id"])

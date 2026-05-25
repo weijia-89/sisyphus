@@ -67,15 +67,7 @@ export JOB_SEARCH_PROFILE=config/search_profile.local.yaml
 ## Verify
 
 ```bash
-python3 -c "
-from pathlib import Path
-import sys
-sys.path.insert(0, '.')
-from lib.search_profile import load_profile
-for p in Path('config/search_profiles').glob('*.yaml'):
-    load_profile(str(p))
-    print('ok', p.name)
-"
+python3 -c "import sys; sys.path.insert(0,'.'); from lib.search_profile import verify_search_profiles; verify_search_profiles()"
 test -f config/profile_catalog.yaml
 test -f docs/SEARCH_PROFILES.md
 ```
