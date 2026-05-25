@@ -1,8 +1,6 @@
 # Getting started
 
-<!-- sdk-review F1: sisyphus merge layout — repo root ./corpofit, not standalone corpofit clone -->
-
-corpofit is a stdlib-only Python tool under `fit/` in the sisyphus repo. No external dependencies. Tested on Python 3.10+.
+corpofit is a stdlib-only Python tool under `fit/` in the sisyphus repo. Run it from the repo root via `./corpofit`, not as a standalone corpofit clone. No external dependencies. Tested on Python 3.10+.
 
 ## Installation
 
@@ -44,8 +42,8 @@ If you forget a flag, the CLI tells you which one is missing.
 
 ## Exit codes
 
-- 0: APPLY decision returned cleanly.
-- 2: input validation failed (bad tier, bad dim score, malformed calibration).
+- 0: APPLY decision returned cleanly (and score logged when logging is enabled).
+- 2: input validation failed (bad tier, bad dim score, malformed calibration), missing `--company` when logging, or log append failed.
 - 3: Gate 2 (compensation floor) triggered DO_NOT_APPLY.
 - 4: Gate 1 (tier 9 or 10) triggered DO_NOT_APPLY.
 - 130: interactive session interrupted by Ctrl-C.
@@ -78,10 +76,7 @@ The `fit/config/calibration.json` path is gitignored. Personal-fit calibrations 
 
 ## The local log
 
-<!-- sdk-review F2: log field is _revision since v0.2.0, not "calibration hash" -->
-<!-- sdk-review F7: log lives under fit/localonly/ when invoked from repo root -->
-
-Every run (unless `--no-log`) appends a JSON record to `fit/localonly/score_log.jsonl`. The record includes the company name, your tier, the score, the band, and the `_revision` field (calibration revision hash; the CLI prints it as "revision") so you can audit which tuning was active for each entry.
+Every run (unless `--no-log`) appends a JSON record to `fit/localonly/score_log.jsonl` (paths are relative to the repo root when you use `./corpofit`). The record includes the company name, your tier, the score, the band, and the `_revision` field (calibration revision hash; the CLI prints it as "revision") so you can audit which tuning was active for each entry.
 
 The `fit/localonly/` directory is gitignored. Records never leave the machine.
 

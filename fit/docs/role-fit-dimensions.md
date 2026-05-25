@@ -24,7 +24,7 @@ Three premises behind the asymmetric weighting:
 2. **Manager and WLB tie for second** because they are the day-to-day operational reality. They beat job security by a small margin because security is more legible upfront and easier to research.
 3. **Comp is smallest** because comp is necessary (above the gate-2 floor) but not sufficient. A high-comp offer in a poor-fit setup does not pencil out over 3 years.
 
-The calibration files in `config/profiles/` adjust these weights per household structure. Sole-earners with dependents get higher comp-floor weights; dual-earner couples get more permissive comp floors and steeper WLB weights.
+The calibration profiles in `fit/config/profiles/` adjust **compensation floors only** (`comp_floor_usd`, Gate 2). All shipped profiles share identical `tier_banding` and internal dimension maxima (`dim_max`); only comp floors differ by household structure. Sole-earners with dependents get higher comp floors; dual-earner couples get lower ones reflecting shared fixed costs. Lane 2 may sync search-profile YAML separately via `config/profile_catalog.yaml`.
 
 ## How to score each dimension
 
@@ -50,7 +50,5 @@ The combined score maps to one of five bands:
 - **RED-STOP** (< 30): do not apply. Internal score is too low to justify the application effort.
 
 ## Audit trail
-
-<!-- sdk-review F2: log schema uses _revision since v0.2.0 -->
 
 Every score is logged to `fit/localonly/score_log.jsonl` with the `_revision` field (calibration revision hash). If you change your calibration profile mid-search, you can replay old entries to see whether they would still pass under the new tuning.

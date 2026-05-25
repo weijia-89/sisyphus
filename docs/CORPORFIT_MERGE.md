@@ -62,7 +62,7 @@ Port **five** corpofit calibration personas into **search_profile** YAML:
 
 Each YAML includes optional field `fit_calibration_profile: <json basename>` for catalog parity.
 
-Wei’s active Atlanta QA profile becomes `search_profiles/wei-atlanta-qa-2026.yaml` (rename from example) and catalog entry `active_default: true` in `profile_catalog.yaml`.
+Wei’s active Atlanta QA profile becomes `search_profiles/wei-atlanta-qa-2026.yaml` (rename from example) with `active_default: wei-atlanta-qa-2026` in `profile_catalog.yaml`.
 
 ## GitHub
 
@@ -73,6 +73,10 @@ Wei’s active Atlanta QA profile becomes `search_profiles/wei-atlanta-qa-2026.y
 | `weijia-89/career-helper` | Archive banner (JobSpy only) — see `MIGRATION_TASK.md` |
 
 Pages: corpofit Pages SPA may stay on archived repo temporarily; optional later lane ports `fit/docs/` assets only if needed.
+
+## Classification archive (maintainer-only, lane 1)
+
+`fit/data/classification_archive.bin` is **not shipped** in lane 1. Private classification rubric sources live under `fit/.internal/archive_sources/` (gitignored). Maintainers run `python3 fit/scripts/repo_archive.py encode` locally to produce the binary. Ground-truth tests in `fit/tests/test_archive.py` and `fit/tests/test_cli.py` skip when the file is absent — expected for clone-only operators, not a CI failure.
 
 ## SDK parallel lanes
 

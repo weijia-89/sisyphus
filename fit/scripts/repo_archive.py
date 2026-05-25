@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """repo_archive.py: bundle and restore the working-state archive.
 
-A maintainer utility. Bundles plaintext working files from a source
-directory into a compact binary blob, or restores them from the blob
-back into the source directory.
+A maintainer-only utility (lane-1 merge does not ship the archive binary).
+Bundles plaintext working files from a source directory into a compact binary
+blob, or restores them from the blob back into the source directory.
+Maintainers encode locally from fit/.internal/archive_sources/ into
+fit/data/classification_archive.bin; clone-only operators skip ground-truth tests.
 
 Encoding pipeline (encode mode):
 
@@ -103,7 +105,11 @@ def decode_archive(archive_path: Path, source_dir: Path) -> dict:
                 continue
             if "/" in m.name or m.name.startswith(".."):
                 raise ValueError(f"refusing to extract unsafe path: {m.name}")
-            tf.extract(m, path=source_dir, filter="data")
+            # tarfile filter= requires 3.12+; name checks above cover older runtimes
+            extract_kwargs: dict = {}
+            if hasattr(tarfile, "data_filter"):
+                extract_kwargs["filter"] = "data"
+            tf.extract(m, path=source_dir, **extract_kwargs)
             extracted.append(m.name)
 
     return {

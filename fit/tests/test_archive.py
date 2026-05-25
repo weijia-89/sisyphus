@@ -122,12 +122,15 @@ class RoundTripTests(unittest.TestCase):
                              f"unicode round-trip mismatched: {stats['mismatches']!r}")
 
     def test_ground_truth_archive_decodes_cleanly(self):
-        """The committed data/classification_archive.bin must decode
-        without errors AND contain the canonical seven reference
-        files. Regression test against silent corruption + content drift."""
+        """Maintainer-only: when fit/data/classification_archive.bin exists locally,
+        decode must succeed and contain the canonical seven reference files.
+        Lane-1 merge does not ship the binary; skip is expected for clone-only ops."""
         ground_archive = _REPO / "data" / "classification_archive.bin"
         if not ground_archive.exists():
-            self.skipTest("no ground-truth archive present; run encode first")
+            self.skipTest(
+                "classification_archive.bin not present (lane-1: maintainer-only; "
+                "encode locally from fit/.internal/archive_sources/)"
+            )
         with tempfile.TemporaryDirectory() as tmp:
             stats = repo_archive.decode_archive(ground_archive, Path(tmp))
             self.assertGreater(stats["file_count"], 0)

@@ -59,8 +59,6 @@ The JD midpoint is $165k. The tier-4 compensation floor in our calibration is $1
   --company "Acme Corp"
 ```
 
-<!-- sdk-review F2: score log records use _revision, not "calibration hash" -->
-
 The record lands in `fit/localonly/score_log.jsonl` with the `_revision` field so you can audit later.
 
 ## Step 6: Prep the application artifacts
@@ -85,6 +83,6 @@ Walks through the JD's top three requirements, which experiences to foreground, 
 
 - Tier 9 or 10 hard-block flow: the calculator short-circuits before scoring. See the `compute_fit` test cases for that behavior.
 - Gate 2 trigger: if Acme's comp were $115k, Gate 2 would block at tier 4. The calculator returns DO_NOT_APPLY with `gate_blocked_at == "gate_2"`.
-- Calibration override: if you copy a different profile to `fit/config/calibration.json`, the tier banding and comp floors shift accordingly. Same inputs, different decisions.
+- Calibration override: if you copy a different profile to `fit/config/calibration.json`, comp floors shift accordingly (tier banding and dim max stay shared across shipped profiles). Same inputs, different Gate 2 decisions.
 
 Each of these is covered by the unit tests in `fit/tests/`.
