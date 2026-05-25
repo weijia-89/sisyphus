@@ -1,0 +1,38 @@
+# Single-person very-high COL household (SF Bay, NYC, Seattle, etc.). Edit home_metro for your market.
+fit_calibration_profile: single-high-col-2026
+owner: single-high-col-2026
+
+remote_preference: hybrid_home_metro
+
+home_metro:
+  name: Atlanta core
+  zip_anchor: "30317"
+  place_names:
+    - Atlanta
+    - Decatur
+    - Sandy Springs
+    - Marietta
+    - Alpharetta
+    - Buckhead
+    - Midtown Atlanta
+
+comp:
+  # tier_floors from corpofit comp_floor_usd; min_ceiling_usd = tier-5 floor − $15k (scraper comp_ok).
+  min_ceiling_usd: 175000
+  tier_floors:
+    "5": 190000
+    "7": 225000
+
+ils:
+  cold_floor: 45
+  referral_warm_delta: -10
+  referral_strong_delta: -20
+
+tracks:
+  enable: [A, B, C]
+
+referrals:
+  status_file: ../referral_status.template.txt
+
+output:
+  results_dir: ../../data/jobspy_results

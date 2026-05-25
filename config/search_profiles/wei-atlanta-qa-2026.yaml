@@ -1,0 +1,92 @@
+# Wei Jia — active Atlanta QA profile (tracks A/B/C). Ported from search_profile.example.yaml.
+fit_calibration_profile: single-us-metro-2026
+owner: Wei Jia
+
+# hybrid_home_metro = fully remote US preferred; hybrid/onsite only in home_metro allowlist.
+# Matches IL-12 L-0 (Atlanta GA): remote US, hub-list remote including Atlanta, or hybrid in ATL core.
+# Do NOT use any_us_remote for this profile — that mode skips the ATL hybrid allowlist.
+remote_preference: hybrid_home_metro
+
+home_metro:
+  name: Atlanta core
+  zip_anchor: "30317"
+  place_names:
+    - Atlanta
+    - Decatur
+    - Brookhaven
+    - Chamblee
+    - Doraville
+    - Tucker
+    - Clarkston
+    - Scottdale
+    - Avondale Estates
+    - Sandy Springs
+    - Dunwoody
+    - Roswell
+    - Marietta
+    - Smyrna
+    - Vinings
+    - Cumberland
+    - Austell
+    - Mableton
+    - Kennesaw
+    - East Point
+    - College Park
+    - Hapeville
+    - Forest Park
+    - Union City
+    - Fairburn
+    - Peachtree Corners
+    - Norcross
+    - Duluth
+    - Lilburn
+    - Stone Mountain
+    - Lithonia
+    - Snellville
+    - Alpharetta
+    - Johns Creek
+    - Lawrenceville
+    - Suwanee
+    - Cumming
+    - Buford
+    - Milton
+    - Woodstock
+    - Acworth
+    - Holly Springs
+    - Stockbridge
+    - Conyers
+    - Buckhead
+    - Midtown Atlanta
+    - Downtown Atlanta
+    - Grant Park
+    - Inman Park
+    - Old Fourth Ward
+    - Candler Park
+    - Kirkwood
+    - Edgewood
+    - East Atlanta
+    - Reynoldstown
+    - Virginia-Highland
+    - Emory
+    - Georgia Tech
+
+comp:
+  # min_ceiling_usd: operator-tuned scraper floor (below tier-5 offer gate).
+  min_ceiling_usd: 130000
+  tier_floors:
+    "5": 145000
+    "7": 150000
+
+ils:
+  cold_floor: 45
+  referral_warm_delta: -10
+  referral_strong_delta: -20
+
+tracks:
+  enable: [A, B, C]
+
+referrals:
+  status_file: ../referral_status.template.txt
+
+output:
+  results_dir: ../../data/jobspy_results
