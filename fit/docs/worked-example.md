@@ -22,7 +22,7 @@ C5 banding at tier 4 is 27.0 points.
 
 ## Step 2: Score the internal dimensions
 
-Read `docs/role-fit-dimensions.md` for the rubric. Each dimension gets a 0-to-max score based on the evidence available.
+Read `fit/docs/role-fit-dimensions.md` for the rubric. Each dimension gets a 0-to-max score based on the evidence available.
 
 For Acme:
 
@@ -52,29 +52,31 @@ The JD midpoint is $165k. The tier-4 compensation floor in our calibration is $1
 ## Step 5: Log the decision
 
 ```bash
-python3 scripts/corpofit.py \
+./corpofit \
   --tier 4 \
   --c1 10 --c2 11.5 --c3 9 --c4 11 --c6 7 --c7 2 \
   --comp 165000 \
   --company "Acme Corp"
 ```
 
-The record lands in `localonly/score_log.jsonl` with the calibration hash so you can audit later.
+<!-- sdk-review F2: score log records use _revision, not "calibration hash" -->
+
+The record lands in `fit/localonly/score_log.jsonl` with the `_revision` field so you can audit later.
 
 ## Step 6: Prep the application artifacts
 
 Now that the decision is "apply", use the elicitation flow:
 
 ```bash
-python3 scripts/elicit.py cover-letter
+python3 fit/scripts/elicit.py cover-letter
 ```
 
-The cover-letter flow prompts for company, role, hiring manager, source, why-this-company, why-now, specific-fit, and one risk-or-gap. Answers save under `localonly/sessions/cover-letter-acme-corp-2026-05-17.json`. You can pull from this file when drafting in your editor.
+The cover-letter flow prompts for company, role, hiring manager, source, why-this-company, why-now, specific-fit, and one risk-or-gap. Answers save under `fit/localonly/sessions/cover-letter-acme-corp-2026-05-17.json`. You can pull from this file when drafting in your editor.
 
 For resume tailoring:
 
 ```bash
-python3 scripts/elicit.py resume
+python3 fit/scripts/elicit.py resume
 ```
 
 Walks through the JD's top three requirements, which experiences to foreground, which to demote, metric anchors, and a voice check.
@@ -83,6 +85,6 @@ Walks through the JD's top three requirements, which experiences to foreground, 
 
 - Tier 9 or 10 hard-block flow: the calculator short-circuits before scoring. See the `compute_fit` test cases for that behavior.
 - Gate 2 trigger: if Acme's comp were $115k, Gate 2 would block at tier 4. The calculator returns DO_NOT_APPLY with `gate_blocked_at == "gate_2"`.
-- Calibration override: if you copy a different profile to `config/calibration.json`, the tier banding and comp floors shift accordingly. Same inputs, different decisions.
+- Calibration override: if you copy a different profile to `fit/config/calibration.json`, the tier banding and comp floors shift accordingly. Same inputs, different decisions.
 
-Each of these is covered by the unit tests in `tests/`.
+Each of these is covered by the unit tests in `fit/tests/`.

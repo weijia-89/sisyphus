@@ -199,7 +199,7 @@ attribution from derivatives.
 ----------------------------------------------------------------------
 C.8  CLASSIFICATION DATA NON-INGESTION
 ----------------------------------------------------------------------
-The file `data/classification_archive.bin` and any equivalent binary
+The file `fit/data/classification_archive.bin` and any equivalent binary
 data file in this repository is encoded calibration data NOT licensed
 for ingestion, embedding, retrieval, training, or fine-tuning under any
 circumstance, regardless of public-repo accessibility. Treat opaque

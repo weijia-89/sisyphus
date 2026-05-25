@@ -1,29 +1,39 @@
 # Getting started
 
-corpofit is a stdlib-only Python tool. No external dependencies. Tested on Python 3.10+.
+<!-- sdk-review F1: sisyphus merge layout — repo root ./corpofit, not standalone corpofit clone -->
+
+corpofit is a stdlib-only Python tool under `fit/` in the sisyphus repo. No external dependencies. Tested on Python 3.10+.
 
 ## Installation
 
+From a clone of the sisyphus repo:
+
 ```bash
-git clone https://github.com/weijia-89/corpofit.git
-cd corpofit
-python3 -m unittest discover tests -v
+git clone git@github.com:weijia-89/sisyphus.git
+cd sisyphus
+python3 -m unittest discover -s fit/tests -v
 ```
 
 If all tests pass, the install is good.
 
 ## First run
 
-Interactive mode walks you through every input with prompts and inline rubric reminders:
+From the **repo root**, interactive mode walks you through every input with prompts and inline rubric reminders:
 
 ```bash
-python3 scripts/corpofit.py --interactive
+./corpofit --interactive
+```
+
+Or invoke the script directly:
+
+```bash
+python3 fit/scripts/corpofit.py --interactive
 ```
 
 Non-interactive scoring requires every input on the command line:
 
 ```bash
-python3 scripts/corpofit.py \
+./corpofit \
   --tier 4 \
   --c1 10 --c2 12 --c3 11 --c4 10 --c6 7 --c7 2 \
   --comp 165000 \
@@ -44,48 +54,51 @@ The non-zero exit codes are useful for shell scripting: chain corpofit into a pi
 
 ## Calibration profiles
 
-Five profiles ship in `config/profiles/`:
+Five profiles ship in `fit/config/profiles/`:
 
-- `single-low-COL-2026.json`: single earner, low cost-of-living metro.
-- `single-us-metro-2026.json`: single earner, median US metro. This is the default copied into `config/calibration.example.json`.
-- `single-high-COL-2026.json`: single earner, high cost-of-living metro.
-- `couple-no-deps-medium-COL-2026.json`: dual-earner couple, no dependents.
-- `sole-earner-with-deps-medium-COL-2026.json`: sole earner, dependents.
+- `single-low-col-2026.json`: single earner, low cost-of-living metro.
+- `single-us-metro-2026.json`: single earner, median US metro. This is the default copied into `fit/config/calibration.example.json`.
+- `single-high-col-2026.json`: single earner, high cost-of-living metro.
+- `couple-no-deps-medium-col-2026.json`: dual-earner couple, no dependents.
+- `sole-earner-with-deps-medium-col-2026.json`: sole earner, dependents.
 
 To use a non-default profile:
 
 ```bash
-cp config/profiles/single-high-COL-2026.json config/calibration.json
+cp fit/config/profiles/single-high-col-2026.json fit/config/calibration.json
 ```
 
 Or pass `--config` directly:
 
 ```bash
-python3 scripts/corpofit.py --config config/profiles/single-high-COL-2026.json ...
+./corpofit --config fit/config/profiles/single-high-col-2026.json ...
 ```
 
-The `config/calibration.json` path is gitignored. Personal-fit calibrations stay local.
+The `fit/config/calibration.json` path is gitignored. Personal-fit calibrations stay local.
 
 ## The local log
 
-Every run (unless `--no-log`) appends a JSON record to `localonly/score_log.jsonl`. The record includes the company name, your tier, the score, the band, and the calibration hash so you can audit which tuning was active for each entry.
+<!-- sdk-review F2: log field is _revision since v0.2.0, not "calibration hash" -->
+<!-- sdk-review F7: log lives under fit/localonly/ when invoked from repo root -->
 
-The `localonly/` directory is gitignored. Records never leave the machine.
+Every run (unless `--no-log`) appends a JSON record to `fit/localonly/score_log.jsonl`. The record includes the company name, your tier, the score, the band, and the `_revision` field (calibration revision hash; the CLI prints it as "revision") so you can audit which tuning was active for each entry.
+
+The `fit/localonly/` directory is gitignored. Records never leave the machine.
 
 To review your log:
 
 ```bash
-cat localonly/score_log.jsonl | python3 -m json.tool
+cat fit/localonly/score_log.jsonl | python3 -m json.tool
 ```
 
 ## Elicitation flow
 
 ```bash
-python3 scripts/elicit.py values
-python3 scripts/elicit.py cover-letter
-python3 scripts/elicit.py resume
+python3 fit/scripts/elicit.py values
+python3 fit/scripts/elicit.py cover-letter
+python3 fit/scripts/elicit.py resume
 ```
 
-Each subcommand walks through a structured questionnaire and saves a session file under `localonly/sessions/`. Future cover-letter or resume drafts can pull from the saved values to maintain a consistent voice.
+Each subcommand walks through a structured questionnaire and saves a session file under `fit/localonly/sessions/`. Future cover-letter or resume drafts can pull from the saved values to maintain a consistent voice.
 
-See `docs/role-fit-dimensions.md` for the seven scoring dimensions. The 1-10 industry-classification tier is user-supplied input. corpofit doesn't ship a public rubric; bring your own ethics framework and apply it consistently.
+See `fit/docs/role-fit-dimensions.md` for the seven scoring dimensions. The 1-10 industry-classification tier is user-supplied input. corpofit doesn't ship a public rubric; bring your own ethics framework and apply it consistently.

@@ -51,4 +51,6 @@ The combined score maps to one of five bands:
 
 ## Audit trail
 
-Every score is logged to `localonly/score_log.jsonl` with the calibration hash. If you change your calibration profile mid-search, you can replay old entries to see whether they would still pass under the new tuning.
+<!-- sdk-review F2: log schema uses _revision since v0.2.0 -->
+
+Every score is logged to `fit/localonly/score_log.jsonl` with the `_revision` field (calibration revision hash). If you change your calibration profile mid-search, you can replay old entries to see whether they would still pass under the new tuning.

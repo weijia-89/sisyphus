@@ -7,7 +7,7 @@ Private personal job-search workspace (Wei Jia). **GitHub:** `weijia-89/sisyphus
 | **JobSpy scrape/triage** | `scripts/`, `lib/` | `requirements.txt` (python-jobspy, pandas, …) |
 | **Job-fit calculator** | `fit/` | **stdlib only** |
 
-Link stacks via **data only** — e.g. `config/profile_catalog.yaml` pairs a search profile with a fit calibration JSON (see `docs/CORPORFIT_MERGE.md`).
+Link stacks via **data only** — SDK lane 2 will add `config/profile_catalog.yaml` to pair a search profile with a fit calibration JSON (see `docs/CORPORFIT_MERGE.md`; catalog not in lane-1 merge).
 
 Replaces legacy **`weijia-89/career-helper`** for scrape/triage. The former **corpofit** brand lives under `fit/`; application tracking stays in a separate local career-ops workspace — see `docs/MIGRATION_TASK.md`.
 
