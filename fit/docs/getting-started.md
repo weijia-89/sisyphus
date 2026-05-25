@@ -44,8 +44,8 @@ If you forget a flag, the CLI tells you which one is missing.
 
 ## Exit codes
 
-- 0: APPLY decision returned cleanly.
-- 2: input validation failed (bad tier, bad dim score, malformed calibration).
+- 0: APPLY decision returned cleanly (and score logged when logging is enabled).
+- 2: input validation failed (bad tier, bad dim score, malformed calibration), missing `--company` when logging, or log append failed.
 - 3: Gate 2 (compensation floor) triggered DO_NOT_APPLY.
 - 4: Gate 1 (tier 9 or 10) triggered DO_NOT_APPLY.
 - 130: interactive session interrupted by Ctrl-C.

@@ -811,7 +811,9 @@ def main(argv: Optional[list[str]] = None) -> int:
         try:
             log_target = log_score_record(result, company)
         except OSError as e:
-            print(f"WARN: log append failed ({e}); result not persisted.", file=sys.stderr)
+            # sdk-review F4: logging requested but append failed — non-zero for pipelines
+            print(f"ERROR: log append failed ({e}); result not persisted.", file=sys.stderr)
+            return 2
 
     if args.json:
         print(result.to_json())

@@ -248,10 +248,13 @@ class ArchiveCLITests(unittest.TestCase):
         self.assertIn("verify", result.stdout)
 
     def test_verify_with_ground_truth_archive(self):
-        """Verify the shipped archive round-trips."""
+        """Maintainer-only: verify round-trip when classification_archive.bin exists locally."""
         archive = _REPO / "data" / "classification_archive.bin"
         if not archive.exists():
-            self.skipTest("no ground-truth archive present")
+            self.skipTest(
+                "classification_archive.bin not present (lane-1: maintainer-only; "
+                "encode locally from fit/.internal/archive_sources/)"
+            )
         result = _run(_ARCHIVE, ["verify"])
         self.assertEqual(result.returncode, 0,
                          f"verify failed: {result.stdout!r} {result.stderr!r}")
