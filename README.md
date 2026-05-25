@@ -1,52 +1,56 @@
 # sisyphus
 
-Private personal job-search workspace (Wei Jia). **Upstream scraper:** [python-jobspy](https://github.com/speedyapply/JobSpy) on PyPI. **This repo:** multi-board orchestration, filter pipeline, prescreen columns, triage CLI, YAML search profiles, and a stdlib job-fit calculator under `fit/` — not a fork of upstream.
+![Sisyphus, oil on canvas by Titian, c. 1548-49 (Prado Museum, Madrid)](https://cdn.britannica.com/65/216665-050-A83A782E/Sisyphus-Titian-1548-49-Prado-Museum-Madrid.jpg)
 
-**GitHub:** `weijia-89/sisyphus` (private). Two independent Python stacks share one repo but **never cross-import**:
+*Sisyphus*, Titian, c. 1548-49. [Prado Museum, Madrid](https://www.britannica.com/topic/Sisyphus-Greek-mythology) (image via Encyclopaedia Britannica).
+
+Job-search tooling built around [python-jobspy](https://github.com/speedyapply/JobSpy). This repo adds multi-board scrape orchestration plus YAML search profiles with prescreen columns. A triage CLI ranks the CSV rows. A stdlib-only job-fit calculator lives under `fit/`. The tree is a pipeline and scoring layer on top of the PyPI package, not a fork of upstream JobSpy. Board and scraper drift is ongoing; it's unclear how long current filters stay valid without a refresh or a python-jobspy bump.
+
+**Repository:** [github.com/weijia-89/sisyphus](https://github.com/weijia-89/sisyphus) (public)
+
+Two Python stacks live in one tree and **never import each other**:
 
 | Stack | Path | Dependencies |
 |-------|------|--------------|
-| **JobSpy scrape/triage** | `scripts/`, `lib/` | `requirements.txt` (python-jobspy, pandas, …) |
-| **Job-fit calculator** | `fit/` | **stdlib only** |
+| JobSpy scrape and triage | `scripts/`, `lib/` | `requirements.txt` (python-jobspy, pandas, …) |
+| Job-fit calculator | `fit/` | stdlib only (Python 3.10+) |
 
-Link stacks via **data only** — `config/profile_catalog.yaml` pairs a search profile with a fit calibration JSON (see `docs/CORPORFIT_MERGE.md`).
+The stacks connect through **data only**: `config/profile_catalog.yaml` maps a search profile to a fit calibration JSON. See `docs/CORPORFIT_MERGE.md` for how the former corpofit calculator landed under `fit/`.
 
-Replaces legacy **`weijia-89/career-helper`** for scrape/triage. The former **corpofit** brand lives under `fit/`; application tracking stays in a separate local career-ops workspace — see `docs/MIGRATION_TASK.md`.
-
-## JobSpy stack — setup
+## Quick start (JobSpy stack)
 
 ```bash
-cd ~/Projects/sisyphus
+git clone https://github.com/weijia-89/sisyphus.git
+cd sisyphus
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp config/search_profile.template.yaml config/search_profile.local.yaml
-# edit profile (owner, home_metro, comp, tracks) — local file is gitignored
+# edit profile (owner, home_metro, comp, tracks); keep the local file out of git
 export JOB_SEARCH_PROFILE=config/search_profile.local.yaml
 ```
 
-Validate profile:
+Validate the profile:
 
 ```bash
 python3 -c "from lib.search_profile import load_profile; load_profile('$JOB_SEARCH_PROFILE')"
 ```
 
-## JobSpy stack — daily commands
+## Daily workflow
 
 ```bash
-cd ~/Projects/sisyphus
 source .venv/bin/activate
 export JOB_SEARCH_PROFILE=config/search_profile.local.yaml
 python3 scripts/run_search.py
 python3 scripts/triage_jobspy_csv.py --latest --profile "$JOB_SEARCH_PROFILE"
 ```
 
-Outputs land in `data/jobspy_results/` (gitignored):
+CSV output goes to `data/jobspy_results/` (gitignored):
 
-- `jobspy_results_YYYYMMDD.csv` — full daily scrape after filters + prescreen
-- `jobspy_results_YYYYMMDD_new.csv` — URLs not seen in prior full exports
+- `jobspy_results_YYYYMMDD.csv`: full daily scrape after filters and prescreen
+- `jobspy_results_YYYYMMDD_new.csv`: URLs not seen in prior full exports
 - `yield_log.csv`, `yield_funnel.csv`, `search_errors.log`
 
-Optional env overrides:
+Optional environment overrides:
 
 | Variable | Role |
 |----------|------|
@@ -54,21 +58,21 @@ Optional env overrides:
 | `JOB_SKIP_COMPANIES_FILE` | Override skip list path |
 | `JOB_APPLICATION_INDEX` | Optional local HTML index path for auto-skip merge |
 
-## Fit calculator stack
+## Fit calculator
 
-Stdlib-only; no venv required beyond Python 3.10+:
+No extra packages beyond Python 3.10+:
 
 ```bash
 ./corpofit --interactive
 # or: python3 fit/scripts/corpofit.py --interactive
 ```
 
-See `fit/README.md` and `fit/docs/getting-started.md`.
+Details: `fit/README.md`, `fit/docs/getting-started.md`.
 
 ## Layout
 
 ```
-corpofit                       # shim → fit/scripts/corpofit.py
+corpofit/                      # shim → fit/scripts/corpofit.py
 scripts/run_search.py          # scraper + filter pipeline
 scripts/triage_jobspy_csv.py   # CSV triage + ILS post-gates
 scripts/prescreen.py           # prescreen columns
@@ -79,22 +83,21 @@ lib/domain_inference.py        # triage domain/tier heuristics
 config/search_profile.*        # profile schema, template, example
 config/skip_companies.txt      # company skip slugs
 config/ils_overrides.json      # per-company ILS overrides for triage
-fit/                           # stdlib job-fit calculator (see fit/README.md)
-data/jobspy_results/           # gitignored CSV output (.gitkeep only in repo)
+fit/                           # stdlib job-fit calculator
+data/jobspy_results/           # gitignored CSV output (.gitkeep in repo)
 ```
 
-## Docs
+## Documentation
 
-- `docs/JOBSPY_INVENTORY.md` — script map and daily flow
-- `docs/SEARCH_PROFILE.md` — profile fields
-- `docs/CORPORFIT_MERGE.md` — two-stack merge plan
-- `docs/MIGRATION_TASK.md` — private publish + replace career-helper
-- `docs/BRANCH_PROTECTION.md` — lock down `main`
-- `DIFFERENCES-vs-python-jobspy.md` — upstream vs this repo
+- `docs/JOBSPY_INVENTORY.md`: script map and daily flow
+- `docs/SEARCH_PROFILE.md`: profile fields
+- `docs/CORPORFIT_MERGE.md`: two-stack architecture
+- `docs/BRANCH_PROTECTION.md`: `main` branch policy
+- `DIFFERENCES-vs-python-jobspy.md`: upstream vs this repo
 
 ## License
 
-Dual-licensed repo — see `LICENSE`:
+Dual-licensed; see `LICENSE`:
 
 - **JobSpy stack** (`scripts/`, `lib/`, …): MIT
 - **Fit calculator** (`fit/`): PolyForm Noncommercial 1.0.0 + Iron Law Addendum
