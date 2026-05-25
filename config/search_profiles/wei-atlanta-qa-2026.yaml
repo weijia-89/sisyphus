@@ -86,7 +86,7 @@ tracks:
   enable: [A, B, C]
 
 referrals:
-  status_file: config/referral_status.template.txt
+  status_file: ../referral_status.template.txt
 
 output:
-  results_dir: ./data/jobspy_results
+  results_dir: ../../data/jobspy_results
