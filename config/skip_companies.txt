@@ -1,0 +1,26 @@
+# skip_companies.txt — companies excluded from job search results.
+# Format: one slug per line; "  # rationale" optional after slug.
+# Override path: JOB_SKIP_COMPANIES_FILE
+# Loaded by scripts/run_search.py; matched via normalize_company_key() prefix rules.
+
+# Critical fallback subset (always-skip PE, surveillance, gig platforms)
+intuit
+palantir
+flock safety
+axon
+clearview
+scale ai
+turing
+mercor
+remotasks
+invisible
+upwork
+toptal
+super.com
+supercom
+snapcommerce
+anduril
+anduril industries
+knowbe4
+
+# Add your own slugs below (or copy from toren/applications/skip_companies.txt locally)

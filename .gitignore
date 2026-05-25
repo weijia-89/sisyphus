@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+config/search_profile.local.yaml
+config/referral_status.local.txt
+data/*
+!data/jobspy_results/
+data/jobspy_results/*
+!data/jobspy_results/.gitkeep
+localonly/

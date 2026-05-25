@@ -1,0 +1,40 @@
+{
+  "_comment": "Per-company ILS point overrides for triage_jobspy_csv.estimate_ils. Keys are lowercase substrings checked via `key in company.lower()`. First match wins (insertion order). Companies with conditional logic (travel penalty, JD-comp lookup, JD-body OR clauses) stay hardcoded in triage_jobspy_csv.py — see the 'complex per-company' section there. See docs/reference_ils_scoring_model.md for the model these overrides snapshot.",
+
+  "crowdstrike": {
+    "score": 38,
+    "note": "Falcon cloud SWE-heavy bar; cyber screener; preferred intel/cyber bullet; cold apply"
+  },
+  "ifit": {
+    "score": 34,
+    "note": "CLT contract; thin comp visibility; gig-like posture"
+  },
+  "wissen": {
+    "score": 46,
+    "note": "Strong SDET signal; consulting + 10yr AVP bar; hybrid not remote"
+  },
+  "taulia": {
+    "score": 41,
+    "note": "Director-scope Principal QE; 12+ yr bar; remote not guaranteed in JD"
+  },
+  "hyland": {
+    "score": 52,
+    "note": "US remote; medical imaging stack; cold apply"
+  },
+  "abbvie": {
+    "score": 33,
+    "note": "Plant CSV/regulated manufacturing; onsite plant culture"
+  },
+  "quva": {
+    "score": 36,
+    "note": "Pharma validation QA; NJ site posture; no clear WFH in JD"
+  },
+  "tram": {
+    "score": 34,
+    "note": "Automotive warranty plant track; Plymouth MI implied onsite"
+  },
+  "yeti": {
+    "score": 30,
+    "note": "Bozeman HQ product/manufacturing QA; intl travel"
+  }
+}

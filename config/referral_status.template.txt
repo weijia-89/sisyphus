@@ -1,0 +1,12 @@
+# Referral-status overrides — read by scripts/triage_jobspy_csv.py via search profile.
+#
+# Format: company_substring,status   (one per line; comments via #)
+#
+# status values:
+#   cold    — default; no need to list (cold floor from profile ils.cold_floor)
+#   warm    — LinkedIn connection at company (floor = cold + referral_warm_delta)
+#   strong  — likely HM intro path (floor = cold + referral_strong_delta)
+#
+# Copy to config/referral_status.local.txt and point search_profile at it.
+
+# example-corp,warm

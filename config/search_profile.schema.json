@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sisyphus.local/config/search_profile.schema.json",
+  "title": "Job search profile",
+  "description": "User-owned job-search preferences for sisyphus scraper and triage. No secrets or API keys.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "owner",
+    "remote_preference",
+    "home_metro",
+    "comp",
+    "ils",
+    "tracks",
+    "referrals",
+    "output"
+  ],
+  "properties": {
+    "owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name for logs and assessment headers (not used for auth)."
+    },
+    "remote_preference": {
+      "type": "string",
+      "enum": ["fully_remote", "hybrid_home_metro", "any_us_remote"],
+      "description": "Work-mode policy. fully_remote: US employee remote only; drop hybrid/onsite. hybrid_home_metro: remote US or hybrid/onsite only when JD/location hits home_metro.place_names (aligns with IL-12 L-0 for Atlanta-based searchers). any_us_remote: keep any listing that passes US-remote column checks; does not enforce home-metro hybrid allowlist (broader; may surface roles IL-12 would block for a fixed home metro)."
+    },
+    "home_metro": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "zip_anchor", "place_names"],
+      "description": "Anchor geography for hybrid/onsite exceptions when remote_preference is hybrid_home_metro.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human label, e.g. Atlanta core."
+        },
+        "zip_anchor": {
+          "type": "string",
+          "pattern": "^[0-9]{5}$",
+          "description": "Five-digit US ZIP used as commute anchor (~25 road miles heuristic; place_names is the enforced allowlist)."
+        },
+        "place_names": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 2
+          },
+          "uniqueItems": true,
+          "description": "Case-insensitive substring allowlist for hybrid/onsite JD or location text (city/neighborhood names)."
+        }
+      }
+    },
+    "comp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min_ceiling_usd"],
+      "description": "Compensation floors in USD. Scraper uses min_ceiling_usd; tier_floors override JFS/T-tier offer gates in manual review.",
+      "properties": {
+        "min_ceiling_usd": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minimum acceptable salary ceiling from JobSpy min_amount/max_amount (same as run_search_locally comp_ok threshold)."
+        },
+        "tier_floors": {
+          "type": "object",
+          "description": "Optional per-tier offer floors (T5, T7, etc.) for post-triage manual gates; keys are tier numbers as strings.",
+          "propertyNames": {
+            "pattern": "^[0-9]+$"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "ils": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cold_floor"],
+      "description": "ILS (role-fit) triage floors. Conservative point estimate from triage_jobspy_csv; not a substitute for full ILS session.",
+      "properties": {
+        "cold_floor": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Skip post-gate when ils_estimate is below this for cold-apply employers (default in toren: 45)."
+        },
+        "referral_warm_delta": {
+          "type": "integer",
+          "maximum": 0,
+          "default": -10,
+          "description": "Added to cold_floor for warm referral tier (LinkedIn connection at company)."
+        },
+        "referral_strong_delta": {
+          "type": "integer",
+          "maximum": 0,
+          "default": -20,
+          "description": "Added to cold_floor for strong referral tier (likely HM intro path)."
+        }
+      }
+    },
+    "tracks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enable"],
+      "description": "Which scraper tracks to run (run_search_locally track letters).",
+      "properties": {
+        "enable": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["A", "B", "C", "G", "R", "GH", "L", "AS"]
+          },
+          "uniqueItems": true,
+          "description": "A=SDET/QA, B=AI IC, C=tech PM/TPM, G=Google Jobs, R=Remotive, GH=Greenhouse, L=Lever, AS=Ashby."
+        }
+      }
+    },
+    "referrals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status_file"],
+      "description": "Per-company referral warmth for tiered ILS floors.",
+      "properties": {
+        "status_file": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path to referral_status.txt (company_substring,status lines: cold|warm|strong). Relative paths resolve from the profile file directory."
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["results_dir"],
+      "description": "Where scraper and triage read/write CSV artifacts.",
+      "properties": {
+        "results_dir": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Directory for jobspy_results_YYYYMMDD.csv and triage exports. Relative paths resolve from the profile file directory."
+        }
+      }
+    }
+  }
+}

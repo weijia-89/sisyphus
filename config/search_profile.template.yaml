@@ -1,0 +1,39 @@
+# Copy to config/search_profile.local.yaml and edit (gitignored).
+# Validate: python3 -c "from lib.search_profile import load_profile; load_profile('config/search_profile.local.yaml')"
+
+owner: your-name
+
+# fully_remote       — US employee remote only; no hybrid/onsite
+# hybrid_home_metro  — remote US OR hybrid/onsite in home_metro.place_names only
+# any_us_remote      — broadest; may include hybrid non-home-metro (check your L-0 geo rules)
+remote_preference: hybrid_home_metro
+
+home_metro:
+  name: your metro name
+  zip_anchor: "00000"
+  place_names:
+    - Your City
+    - Nearby suburb
+    # Add every city/neighborhood you'd commute to for hybrid days
+
+comp:
+  min_ceiling_usd: 130000
+  # tier_floors:        # optional manual offer gates after triage
+  #   "5": 145000
+  #   "7": 150000
+
+ils:
+  cold_floor: 45
+  referral_warm_delta: -10
+  referral_strong_delta: -20
+
+tracks:
+  enable: [A, B, C]
+  # Optional boards: G, R, GH, L, AS — see docs/JOBSPY_INVENTORY.md track legend
+
+referrals:
+  status_file: config/referral_status.local.txt
+  # Format: company_substring,status  (cold | warm | strong)
+
+output:
+  results_dir: ./data/jobspy_results
