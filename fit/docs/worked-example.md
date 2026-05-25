@@ -85,6 +85,7 @@ Walks through the JD's top three requirements, which experiences to foreground, 
 
 - Tier 9 or 10 hard-block flow: the calculator short-circuits before scoring. See the `compute_fit` test cases for that behavior.
 - Gate 2 trigger: if Acme's comp were $115k, Gate 2 would block at tier 4. The calculator returns DO_NOT_APPLY with `gate_blocked_at == "gate_2"`.
-- Calibration override: if you copy a different profile to `fit/config/calibration.json`, the tier banding and comp floors shift accordingly. Same inputs, different decisions.
+<!-- sdk-review F2: shipped profiles share tier_banding/dim_max; only comp_floor_usd varies -->
+- Calibration override: if you copy a different profile to `fit/config/calibration.json`, comp floors shift accordingly (tier banding and dim max stay shared across shipped profiles). Same inputs, different Gate 2 decisions.
 
 Each of these is covered by the unit tests in `fit/tests/`.
