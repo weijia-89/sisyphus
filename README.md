@@ -1,13 +1,15 @@
 # sisyphus
 
-Private personal job-search workspace (Wei Jia). **GitHub:** `weijia-89/sisyphus` (private). Two independent Python stacks share one repo but **never cross-import**:
+Private personal job-search workspace (Wei Jia). **Upstream scraper:** [python-jobspy](https://github.com/speedyapply/JobSpy) on PyPI. **This repo:** multi-board orchestration, filter pipeline, prescreen columns, triage CLI, YAML search profiles, and a stdlib job-fit calculator under `fit/` — not a fork of upstream.
+
+**GitHub:** `weijia-89/sisyphus` (private). Two independent Python stacks share one repo but **never cross-import**:
 
 | Stack | Path | Dependencies |
 |-------|------|--------------|
 | **JobSpy scrape/triage** | `scripts/`, `lib/` | `requirements.txt` (python-jobspy, pandas, …) |
 | **Job-fit calculator** | `fit/` | **stdlib only** |
 
-Link stacks via **data only** — SDK lane 2 will add `config/profile_catalog.yaml` to pair a search profile with a fit calibration JSON (see `docs/CORPORFIT_MERGE.md`; catalog not in lane-1 merge).
+Link stacks via **data only** — `config/profile_catalog.yaml` pairs a search profile with a fit calibration JSON (see `docs/CORPORFIT_MERGE.md`).
 
 Replaces legacy **`weijia-89/career-helper`** for scrape/triage. The former **corpofit** brand lives under `fit/`; application tracking stays in a separate local career-ops workspace — see `docs/MIGRATION_TASK.md`.
 
