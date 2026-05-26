@@ -15,7 +15,7 @@ Two Python stacks live in one tree and **never import each other**:
 | JobSpy scrape and triage | `scripts/`, `lib/` | `requirements.txt` (python-jobspy, pandas, …) |
 | Job-fit calculator | `fit/` | stdlib only (Python 3.10+) |
 
-The stacks connect through **data only**: `config/profile_catalog.yaml` maps a search profile to a fit calibration JSON. See `docs/CORPORFIT_MERGE.md` for how the former corpofit calculator landed under `fit/`.
+The stacks connect through **data only**: `config/profile_catalog.yaml` maps a search profile to a fit calibration JSON. See `docs/ARCHITECTURE.md`.
 
 ## Quick start (JobSpy stack)
 
@@ -58,6 +58,8 @@ Optional environment overrides:
 | `JOB_SKIP_COMPANIES_FILE` | Override skip list path |
 | `JOB_APPLICATION_INDEX` | Optional local HTML index path for auto-skip merge |
 
+Full command reference: `docs/OPERATIONS.md`.
+
 ## Fit calculator
 
 No extra packages beyond Python 3.10+:
@@ -68,6 +70,16 @@ No extra packages beyond Python 3.10+:
 ```
 
 Details: `fit/README.md`, `fit/docs/getting-started.md`.
+
+## Web UI
+
+Minimal static landing page with JobSpy and fit entry commands:
+
+```bash
+cd web && npm ci && npm run dev
+```
+
+Open the URL Vite prints (default `http://localhost:5173`). Production build: `npm run build` then serve `web/dist/` with any static file server.
 
 ## Layout
 
@@ -84,16 +96,18 @@ config/search_profile.*        # profile schema, template, example
 config/skip_companies.txt      # company skip slugs
 config/ils_overrides.json      # per-company ILS overrides for triage
 fit/                           # stdlib job-fit calculator
+web/                           # static landing UI (Vite)
 data/jobspy_results/           # gitignored CSV output (.gitkeep in repo)
 ```
 
 ## Documentation
 
-- `docs/JOBSPY_INVENTORY.md`: script map and daily flow
-- `docs/SEARCH_PROFILE.md`: profile fields
-- `docs/CORPORFIT_MERGE.md`: two-stack architecture
-- `docs/BRANCH_PROTECTION.md`: `main` branch policy
+- `docs/ARCHITECTURE.md`: two-stack design and data link
+- `docs/OPERATIONS.md`: daily workflow, script map, outputs
+- `docs/SEARCH_PROFILE.md`: profile field reference
+- `docs/SEARCH_PROFILES.md`: catalog personas and comp table
 - `DIFFERENCES-vs-python-jobspy.md`: upstream vs this repo
+- `web/README.md`: frontend build and serve
 
 ## License
 

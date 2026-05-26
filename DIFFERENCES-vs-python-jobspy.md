@@ -12,7 +12,7 @@ The PyPI package `python-jobspy` exposes a single scraper API:
 
 Upstream owns board adapters, rate limits, and HTML parsing inside the library.
 
-## 2. What we added (sisyphus / toren stack)
+## 2. What we added (sisyphus stack)
 
 | Layer | Location | Purpose |
 |-------|----------|---------|
@@ -37,23 +37,9 @@ Environment variables for portability:
 - Stay on PyPI: `pip install python-jobspy` (see `requirements.txt`)
 - Board-specific bugs and API changes are upstream concerns; bump the dependency version when needed
 
-## 4. Migration from `toren/applications/` paths
+## 4. Historical port
 
-| toren (canonical today) | sisyphus (portable) |
-|-------------------------|---------------------|
-| `~/Projects/toren/applications/run_search_locally.py` | `scripts/run_search.py` |
-| `~/Projects/toren/applications/prescreen.py` | `scripts/prescreen.py` |
-| `~/Projects/toren/applications/index_companies.py` | `scripts/index_companies.py` |
-| `~/Projects/toren/scripts/triage_jobspy_csv.py` | `scripts/triage_jobspy_csv.py` |
-| `~/Projects/toren/applications/scripts/refresh_lib/domain_inference.py` | `lib/domain_inference.py` |
-| `~/Projects/toren/applications/jobspy_results/` | `$JOB_SEARCH_RESULTS_DIR` or profile `output.results_dir` (default `./data/jobspy_results`) |
-| `~/Projects/toren/applications/skip_companies.txt` | `config/skip_companies.txt` (or `JOB_SKIP_COMPANIES_FILE`) |
-| `~/Projects/toren/applications/referral_status.txt` | profile `referrals.status_file` |
-| `~/Projects/toren/applications/ils_overrides.json` | `config/ils_overrides.json` |
-| `~/Projects/toren/applications/application_index.html` | optional `config/application_index.html` via `JOB_APPLICATION_INDEX` |
-| Hardcoded Atlanta geo in scraper/triage | `home_metro.place_names` + `remote_preference` in search profile |
-
-**Daily commands (sisyphus):**
+The JobSpy orchestration in this repo was ported in 2026-05 from a monolithic local applications tree into `scripts/` and `lib/` with profile-driven paths. Same filter semantics; portable env vars and YAML instead of hardcoded metro paths. Daily commands:
 
 ```bash
 cd ~/Projects/sisyphus
@@ -61,12 +47,3 @@ export JOB_SEARCH_PROFILE=config/search_profile.local.yaml
 python3 scripts/run_search.py
 python3 scripts/triage_jobspy_csv.py --latest --profile "$JOB_SEARCH_PROFILE"
 ```
-
-**Equivalent toren commands:**
-
-```bash
-cd ~/Projects/toren/applications && python3 run_search_locally.py
-cd ~/Projects/toren && python3 scripts/triage_jobspy_csv.py --latest
-```
-
-Filter logic is preserved verbatim from toren except for path resolution and profile-driven geo/comp/track settings.

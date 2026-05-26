@@ -35,3 +35,7 @@ fit/.internal/
 # Repo-local working state
 localonly/
 .internal/
+
+# Web UI build artifacts
+web/node_modules/
+web/dist/

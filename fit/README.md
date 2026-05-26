@@ -50,7 +50,7 @@ Local score logs and elicitation sessions go under `fit/localonly/` (gitignored)
 
 ## Stack isolation
 
-This calculator is **stdlib-only** and must not import anything from the JobSpy stack (`lib/`, `scripts/run_search.py`, pandas, jobspy). Link stacks via data files only — see `docs/CORPORFIT_MERGE.md` at the repo root.
+This calculator is **stdlib-only** and must not import anything from the JobSpy stack (`lib/`, `scripts/run_search.py`, pandas, jobspy). Link stacks via data files only — see `docs/ARCHITECTURE.md` at the repo root.
 
 ## License
 
