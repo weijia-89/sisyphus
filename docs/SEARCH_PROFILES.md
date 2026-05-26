@@ -6,7 +6,7 @@ Shipped YAML personas under `config/search_profiles/`. Field definitions and Pyt
 
 | Profile id | When to use |
 |------------|-------------|
-| `wei-atlanta-qa-2026` | **Default for this repo operator** — Atlanta hybrid allowlist, tracks A/B/C, operator-tuned tier-7 floor. |
+| `wei-atlanta-qa-2026` | **Default for this repo operator**; Atlanta hybrid allowlist, tracks A/B/C, operator-tuned tier-7 floor. |
 | `single-us-metro-2026` | Single person, typical US metro COL; starting point for most searchers. |
 | `single-low-col-2026` | Lower COL markets (midwest, smaller southern metros, rural). |
 | `single-high-col-2026` | SF Bay, NYC, Seattle, LA, Boston-Cambridge, DC. |
@@ -15,7 +15,7 @@ Shipped YAML personas under `config/search_profiles/`. Field definitions and Pyt
 
 Manifest: `config/profile_catalog.yaml` (`active_default: wei-atlanta-qa-2026`).
 
-Each YAML may include optional `fit_calibration_profile: <stem>` — a **data-only** link to `fit/config/profiles/<stem>.json`. JobSpy code must not import `fit/`.
+Each YAML may include optional `fit_calibration_profile: <stem>`: a **data-only** link to `fit/config/profiles/<stem>.json`. JobSpy code must not import `fit/`.
 
 ## Comp numbers (fit parity)
 

@@ -25,7 +25,7 @@ python3 -c "from lib.search_profile import load_profile; load_profile('$JOB_SEAR
 | `config/search_profile.schema.json` | JSON Schema draft 2020-12 validation |
 | `config/search_profile.template.yaml` | Anonymized starter with comments |
 | `config/search_profile.example.yaml` | Symlink to `search_profiles/single-us-metro-2026.yaml` |
-| `config/search_profiles/` | Catalog personas — see `profile_catalog.yaml` and `docs/SEARCH_PROFILES.md` |
+| `config/search_profiles/` | Catalog personas; see `profile_catalog.yaml` and `docs/SEARCH_PROFILES.md` |
 | `config/profile_catalog.yaml` | Manifest + `active_default` (`wei-atlanta-qa-2026`) |
 | `config/search_profiles/wei-atlanta-qa-2026.yaml` | Operator QA profile (full ATL allowlist, tracks A/B/C) |
 | `config/search_profile.local.yaml` | Your copy (create locally) |
@@ -53,18 +53,18 @@ For a fixed home city, use `hybrid_home_metro`. `any_us_remote` can surface hybr
 
 ### `home_metro`
 
-- `zip_anchor` — commute anchor ZIP (documentation; enforcement uses `place_names`)
-- `place_names` — substring allowlist for hybrid/onsite matching
+- `zip_anchor` - commute anchor ZIP (documentation; enforcement uses `place_names`)
+- `place_names` - substring allowlist for hybrid/onsite matching
 
 ### `comp`
 
-- `min_ceiling_usd` — scraper `comp_ok` threshold (default example: 130000)
-- `tier_floors` — optional T5/T7 offer gates for manual review after triage
+- `min_ceiling_usd` - scraper `comp_ok` threshold (default example: 130000)
+- `tier_floors` - optional T5/T7 offer gates for manual review after triage
 
 ### `ils`
 
-- `cold_floor` — triage post-gate skip (default 45)
-- `referral_warm_delta` / `referral_strong_delta` — relative to cold (default −10 / −20)
+- `cold_floor` - triage post-gate skip (default 45)
+- `referral_warm_delta` / `referral_strong_delta` - relative to cold (default −10 / −20)
 
 ### `referrals.status_file`
 
@@ -72,7 +72,7 @@ Plain text: `company_substring,status` per line (`cold` | `warm` | `strong`). Co
 
 ### `tracks.enable`
 
-Letters `A` `B` `C` `G` `R` `GH` `L` `AS` — see `docs/OPERATIONS.md` (scraper tracks).
+Letters `A` `B` `C` `G` `R` `GH` `L` `AS`; see `docs/OPERATIONS.md` (scraper tracks).
 
 ### `output.results_dir`
 
