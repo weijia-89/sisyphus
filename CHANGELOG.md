@@ -8,7 +8,7 @@ This file tracks notable changes. Format follows [Keep a Changelog](https://keep
 
 - `web/`: minimal Vite static landing page for JobSpy and fit calculator entry commands.
 - `docs/ARCHITECTURE.md`: canonical two-stack architecture and data-only link.
-- `docs/OPERATIONS.md`: daily workflow, script map, outputs, and environment variables.
+- `docs/OPERATIONS.md`: daily workflow, script map, outputs, environment variables.
 
 ### Changed
 

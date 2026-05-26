@@ -9,7 +9,7 @@ sisyphus is one public repository with two independent Python stacks. They never
 | JobSpy scrape and triage | `scripts/`, `lib/` | `requirements.txt` (python-jobspy, pandas, requests, …) | anything under `fit/` |
 | Job-fit calculator | `fit/` | stdlib only (Python 3.10+) | `lib/`, `scripts/`, pandas, jobspy |
 
-The JobSpy stack wraps [python-jobspy](https://github.com/speedyapply/JobSpy) on PyPI. It adds multi-board orchestration, filter pipelines, prescreen columns on scrape output, YAML search profiles, and CSV triage. The fit stack is the former **corpofit** calculator under `fit/` with a repo-root `./corpofit` shim. The public [corpofit](https://github.com/weijia-89/corpofit) repo has an archive pointer README.
+The JobSpy stack wraps [python-jobspy](https://github.com/speedyapply/JobSpy) on PyPI. It adds multi-board orchestration, filter pipelines, prescreen columns on scrape output, YAML search profiles, plus CSV triage. The fit stack is the former **corpofit** calculator under `fit/` with a repo-root `./corpofit` shim. The public [corpofit](https://github.com/weijia-89/corpofit) repo has an archive pointer README.
 
 ## Data-only link
 

@@ -6,7 +6,7 @@ This repo is **not** a fork of [python-jobspy](https://github.com/speedyapply/Jo
 
 The PyPI package `python-jobspy` exposes a single scraper API:
 
-- `jobspy.scrape_jobs()` — multi-board job search (Indeed, LinkedIn, Google Jobs, etc.)
+- `jobspy.scrape_jobs()` - multi-board job search (Indeed, LinkedIn, Google Jobs, etc.)
 - Returns a pandas DataFrame of raw listings (title, company, location, comp, URL, description when fetched)
 - No opinionated filtering, prescreen scoring, dedup across daily runs, or triage verdicts
 
@@ -28,8 +28,8 @@ Upstream owns board adapters, rate limits, and HTML parsing inside the library.
 
 Environment variables for portability:
 
-- `JOB_SEARCH_RESULTS_DIR` — CSV output directory (default: `data/jobspy_results` under repo root)
-- `JOB_SEARCH_PROFILE` — active search profile YAML
+- `JOB_SEARCH_RESULTS_DIR` - CSV output directory (default: `data/jobspy_results` under repo root)
+- `JOB_SEARCH_PROFILE` - active search profile YAML
 
 ## 3. What we did **not** fork
 
