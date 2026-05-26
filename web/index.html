@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sisyphus</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <h1>sisyphus</h1>
+        <p class="tagline">
+          JobSpy scrape and triage plus a stdlib job-fit calculator. Two stacks,
+          one repo, linked by data only.
+        </p>
+      </header>
+
+      <section class="card" id="jobspy-card">
+        <h2>JobSpy pipeline</h2>
+        <p>
+          Multi-board scrape, YAML profiles, CSV triage. Docs:
+          <a href="../docs/OPERATIONS.md">OPERATIONS</a>,
+          <a href="../docs/SEARCH_PROFILES.md">SEARCH_PROFILES</a>.
+        </p>
+        <pre class="commands" id="jobspy-commands"></pre>
+      </section>
+
+      <section class="card" id="fit-card">
+        <h2>Fit calculator</h2>
+        <p>
+          Seven-dimension role-fit scoring (stdlib). Guide:
+          <a href="../fit/docs/getting-started.md">getting-started</a>.
+        </p>
+        <pre class="commands" id="fit-commands"></pre>
+      </section>
+
+      <footer class="footer">
+        <a href="https://github.com/weijia-89/sisyphus">github.com/weijia-89/sisyphus</a>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
