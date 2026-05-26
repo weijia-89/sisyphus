@@ -6,7 +6,7 @@ This file tracks notable changes. Format follows [Keep a Changelog](https://keep
 
 ### Changed
 
-- README hero image vendored under `docs/assets/` (no CDN hotlink).
+- README hero image vendored under `docs/assets/sisyphus-hero.jpg` (operator photo; no CDN hotlink).
 - Removed SDK review HTML comments from public markdown.
 - `docs/MIGRATION_TASK.md` visibility wording aligned with public repo.
 

@@ -1,8 +1,8 @@
 # sisyphus
 
-![Sisyphus, oil on canvas by Titian, c. 1548-49 (Prado Museum, Madrid)](docs/assets/sisyphus-titian-prado.jpg)
+![Sculpture of Sisyphus pushing a boulder in an outdoor graveyard setting](docs/assets/sisyphus-hero.jpg)
 
-*Sisyphus*, Titian, c. 1548-49. [Prado Museum, Madrid](https://www.britannica.com/topic/Sisyphus-Greek-mythology) (image via Encyclopaedia Britannica).
+README hero: operator-provided photograph, vendored under `docs/assets/` (see `docs/assets/IMAGE_ATTRIBUTION.md`). Myth background: [Sisyphus (Greek mythology)](https://www.britannica.com/topic/Sisyphus-Greek-mythology).
 
 Job-search tooling built around [python-jobspy](https://github.com/speedyapply/JobSpy). This repo adds multi-board scrape orchestration plus YAML search profiles with prescreen columns. A triage CLI ranks the CSV rows. A stdlib-only job-fit calculator lives under `fit/`. The tree is a pipeline and scoring layer on top of the PyPI package, not a fork of upstream JobSpy. Board and scraper drift is ongoing; it's unclear how long current filters stay valid without a refresh or a python-jobspy bump.
 
