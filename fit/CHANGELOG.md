@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 > **Lane 1 (sisyphus merge):** Calculator lives under `fit/` with repo-root `./corpofit` shim.
 > GitHub Pages SPA assets (`fit/docs/assets/`, `fit/docs/tests/`) are **not** in lane 1 —
-> see `docs/CORPORFIT_MERGE.md`. Bullets under *Historical / deferred* below describe the
+> see `docs/ARCHITECTURE.md`. Bullets under *Historical / deferred* below describe the
 > archived standalone corpofit repo or a future Pages port lane.
 
 ### sisyphus lane 1 — CLI usability (merged)

@@ -31,7 +31,8 @@ ils:
 
 tracks:
   enable: [A, B, C]
-  # Optional boards: G, R, GH, L, AS — see docs/JOBSPY_INVENTORY.md track legend
+  # sdk-review F1: track legend lives in OPERATIONS.md after JOBSPY_INVENTORY removal
+  # Optional boards: G, R, GH, L, AS — see docs/OPERATIONS.md (scraper tracks)
 
 referrals:
   status_file: config/referral_status.local.txt

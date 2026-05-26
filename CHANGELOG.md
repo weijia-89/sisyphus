@@ -17,13 +17,12 @@ This file tracks notable changes. Format follows [Keep a Changelog](https://keep
 - Documentation deduped: overlapping intros split between `docs/SEARCH_PROFILE.md` and `docs/SEARCH_PROFILES.md` with cross-links.
 - `DIFFERENCES-vs-python-jobspy.md`: trimmed legacy path migration table to a short historical port note.
 - Root `README.md` points at canonical docs and Web UI subsection.
+- Repository visibility set to **public** (`weijia-89/sisyphus`).
+- Root `README.md` rewritten for public readers (setup, daily flow, layout, license split).
 
 ### Removed
 
 - Internal operator docs: branch protection essay, migration checklist, JobSpy SDK inventory, corpofit merge plan (content merged into public docs above).
-
-- Repository visibility set to **public** (`weijia-89/sisyphus`).
-- Root `README.md` rewritten for public readers (setup, daily flow, layout, license split).
 
 ## [0.2.0] - 2026-05-25
 
