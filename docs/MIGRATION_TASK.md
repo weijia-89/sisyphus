@@ -1,7 +1,7 @@
-# Migration task — sisyphus replaces `career-helper` (private)
+# Migration task — sisyphus replaces `career-helper` (operator)
 
 **Status:** not started (operator-tracked)  
-**Target GitHub:** `weijia-89/sisyphus` — **private**, branch protection on `main`  
+**Target GitHub:** `weijia-89/sisyphus` — **public**, branch protection on `main`  
 **Retire / supersede:** `weijia-89/career-helper` (private legacy JobSpy bundle) · **`weijia-89/corpofit`** (public fit calculator → merged under `fit/` — see `docs/CORPORFIT_MERGE.md`)
 
 ## Policy
@@ -10,14 +10,14 @@
 |------|--------|
 | **No `toren` in sisyphus git** | Application index, assessments, corpovoice, and preapply live in a **separate local-only** career-ops tree. Do not document `~/Projects/toren` paths in README, inventory, or public repo files. |
 | **No secrets in sisyphus** | `search_profile.local.yaml`, CSV exports, referral files with PII, and `.venv` stay gitignored. |
-| **Private + locked** | Repo visibility **private**. `docs/BRANCH_PROTECTION.md` + `scripts/apply_branch_protection.sh` before treating `main` as production. |
+| **Public + locked** | Repo visibility **public**. `docs/BRANCH_PROTECTION.md` + `scripts/apply_branch_protection.sh` before treating `main` as production. |
 | **JobSpy canonical here** | Daily scrape + triage commands run from `~/Projects/sisyphus` only after cutover. |
 
 ## Checklist
 
 ### A. GitHub hygiene (before advertising the repo)
 
-- [ ] Confirm `gh repo view weijia-89/sisyphus` — if **public**, run `gh repo edit weijia-89/sisyphus --visibility private --accept-visibility-change-consequences`
+- [x] Repository is **public** (`weijia-89/sisyphus`).
 - [ ] If remote missing: `gh repo create weijia-89/sisyphus --private --source=. --remote=origin` from clean tree (no local CSV data committed)
 - [ ] Push default branch; set default branch to `main` (or document `master` → rename if needed)
 - [ ] `DRY_RUN=1 GH_REPO=weijia-89/sisyphus ./scripts/apply_branch_protection.sh` then `DRY_RUN=0` after review

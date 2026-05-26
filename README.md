@@ -1,6 +1,6 @@
 # sisyphus
 
-![Sisyphus, oil on canvas by Titian, c. 1548-49 (Prado Museum, Madrid)](https://cdn.britannica.com/65/216665-050-A83A782E/Sisyphus-Titian-1548-49-Prado-Museum-Madrid.jpg)
+![Sisyphus, oil on canvas by Titian, c. 1548-49 (Prado Museum, Madrid)](docs/assets/sisyphus-titian-prado.jpg)
 
 *Sisyphus*, Titian, c. 1548-49. [Prado Museum, Madrid](https://www.britannica.com/topic/Sisyphus-Greek-mythology) (image via Encyclopaedia Britannica).
 
@@ -70,8 +70,6 @@ No extra packages beyond Python 3.10+:
 Details: `fit/README.md`, `fit/docs/getting-started.md`.
 
 ## Layout
-
-<!-- sdk-review F1: corpofit is a repo-root executable file, not a directory (no trailing slash) -->
 
 ```
 corpofit                       # repo-root executable shim → fit/scripts/corpofit.py

@@ -6,6 +6,10 @@ This file tracks notable changes. Format follows [Keep a Changelog](https://keep
 
 ### Changed
 
+- README hero image vendored under `docs/assets/` (no CDN hotlink).
+- Removed SDK review HTML comments from public markdown.
+- `docs/MIGRATION_TASK.md` visibility wording aligned with public repo.
+
 - Repository visibility set to **public** (`weijia-89/sisyphus`).
 - Root `README.md` rewritten for public readers (setup, daily flow, layout, license split).
 
@@ -30,4 +34,3 @@ This file tracks notable changes. Format follows [Keep a Changelog](https://keep
 - Initial private monorepo layout: JobSpy scrape/triage stack, `requirements.txt`, search profile template, prescreen and triage scripts.
 - `docs/JOBSPY_INVENTORY.md`, `docs/SEARCH_PROFILE.md`, `DIFFERENCES-vs-python-jobspy.md`.
 
-<!-- sdk-review F2: Keep a Changelog compare/release footer links omitted until v0.1.0 and v0.2.0 tags exist on GitHub -->
